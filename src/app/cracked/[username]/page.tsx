@@ -53,8 +53,6 @@ export default function Cracked() {
       const gptResponse = await api.fetch<GptResponse>("gpt", { userDetails });
       assert(!gptResponse.error, gptResponse.error || "Analysis failed");
 
-      console.log(gptResponse);
-
       const [conclusionLine, ...scoreLines] = gptResponse.data.completion
         .split("\n")
         .map((line: string) => line.trim());
