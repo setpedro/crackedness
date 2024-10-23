@@ -14,7 +14,6 @@ export default function Button({
   disabled,
   className,
 }: Props) {
-  console.log(disabled)
   return (
     <button
       onClick={onClick}

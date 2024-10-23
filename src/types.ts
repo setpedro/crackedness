@@ -30,6 +30,10 @@ export type Tweet = {
   is_pinned: boolean;
 };
 
+export type GptResponse = {
+  completion: string;
+};
+
 export interface ApiResponse<T> {
   data: T;
   error?: string;

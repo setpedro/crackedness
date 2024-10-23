@@ -1,6 +1,6 @@
 "use client";
 
-import { User, Tweet } from "@/types";
+import { User, Tweet, GptResponse } from "@/types";
 import { api, formatUserDetails } from "@/utils";
 import assert from "assert";
 import React, { useEffect, useState } from "react";
@@ -13,7 +13,6 @@ import Image from "next/image";
 import LoadingSplash from "@/components/LoadingSplash";
 
 export default function Cracked() {
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [conclusion, setConclusion] = useState("");
   const [scores, setScores] = useState<number[]>(Array(4).fill(0));
@@ -27,7 +26,6 @@ export default function Cracked() {
   useEffect(() => {
     async function analyzeUser(): Promise<void> {
       setIsLoading(true);
-      setError("");
 
       // fetch user
       const userResponse = await api.fetch<User>("user", { username });
@@ -52,8 +50,10 @@ export default function Cracked() {
         tweetsResponse.data
       );
       // fetch completion
-      const gptResponse = await api.fetch<any>("gpt", { userDetails });
+      const gptResponse = await api.fetch<GptResponse>("gpt", { userDetails });
       assert(!gptResponse.error, gptResponse.error || "Analysis failed");
+
+      console.log(gptResponse);
 
       const [conclusionLine, ...scoreLines] = gptResponse.data.completion
         .split("\n")
@@ -67,7 +67,7 @@ export default function Cracked() {
     }
 
     analyzeUser();
-  }, [pathname]);
+  }, [pathname, username]);
 
   useEffect(() => {
     function titleSelector(score: number): string {

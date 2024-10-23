@@ -3,7 +3,7 @@ export async function POST(req: Request) {
 
   const URL = `https://api.socialdata.tools/twitter/user/${userId}/tweets`;
 
-  const res: any = await fetch(URL, {
+  const res = await fetch(URL, {
     headers: {
       Authorization: `Bearer ${process.env.SOCIALDATA_API_KEY}`,
       Accept: "application/json",
@@ -11,6 +11,5 @@ export async function POST(req: Request) {
   });
 
   const data = await res.json();
-
   return new Response(JSON.stringify(data.tweets));
 }

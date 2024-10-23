@@ -24,6 +24,7 @@ export async function POST(req: Request) {
     ],
     max_tokens: 2048,
   });
+  console.log(response.usage)
   const completion = response.choices[0].message.content;
 
   return new Response(JSON.stringify({ completion }), {
