@@ -29,7 +29,7 @@ export default function Home() {
       <Navbar />
       <div className="px-20 my-auto flex flex-col gap-10">
         <h1 className="text-3xl sm:text-5xl text-center font-extrabold">
-          Get yourcrackedness score
+          Get your crackedness score
         </h1>
         <form
           onSubmit={handleSubmit}
