@@ -25,17 +25,23 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen border border-black flex flex-col items-center px-20">
+    <div className="h-screen border border-black flex flex-col items-center">
       <Navbar />
-      <h1 className="text-5xl font-extrabold mt-48">
-        Get your crackedness score
-      </h1>
-      <form onSubmit={handleSubmit} className="my-auto flex gap-4">
-        <Input onChange={(e) => setUsername(e.target.value)} />
-        <Button type="submit" disabled={username.length === 0}>
-          Analyze your crackedness
-        </Button>
-      </form>
+      <div className="px-20 my-auto flex flex-col gap-10">
+        <h1 className="text-3xl sm:text-5xl text-center font-extrabold">
+          Get yourcrackedness score
+        </h1>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col sm:flex-row gap-4"
+        >
+          <Input onChange={(e) => setUsername(e.target.value)} />
+          <Button type="submit" disabled={username.length === 0}>
+            Analyze your crackedness
+          </Button>
+        </form>
+      </div>
+
       <Footer />
     </div>
   );

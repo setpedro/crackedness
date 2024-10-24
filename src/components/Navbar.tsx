@@ -3,8 +3,10 @@ import React from "react";
 
 export default function navbar() {
   return (
-    <div className="fixed px-8 py-4 w-full h-16">
-      <Link href="/" className="font-bold">CrackedLyzer</Link>
+    <div className="w-full flex items-center bg-background">
+      <Link href="/" className="font-bold sm:text-lg xl:text-xl px-8 py-4 rounded-br-md">
+        CrackedLyzer
+      </Link>
     </div>
   );
 }

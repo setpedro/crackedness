@@ -91,21 +91,28 @@ export default function Cracked() {
   }
 
   return (
-    <div className="h-screen border border-black flex flex-col items-center px-20">
+    <div className="h-screen border border-black flex flex-col items-center">
       <Navbar />
-      <div className="mt-28 flex flex-col items-center">
-        <h1 className="text-5xl font-extrabold">{title}</h1>
-        <div className="flex flex-col gap-4 mt-10 rounded-md border-2 p-8 w-[1024px] bg-foreground">
-          <div className="text-5xl font-bold">Overall: {overall}%</div>
+      <div className="my-auto flex flex-col items-center px-4 sm:px-20">
+        <h1 className="text-3xl text-center sm:text-5xl font-extrabold">
+          {title}
+        </h1>
+        <div className="flex flex-col gap-4 mt-10 rounded-md border-2 p-4 sm:p-8 max-w-[1024px] bg-foreground">
+          <div className="text-2xl sm:text-4xl font-bold">
+            Overall: {overall}%
+          </div>
           <div className="flex gap-2">
             <div className="flex flex-col w-1/2">
               <div className="flex flex-col gap-2">
                 {parameters.map((x, i) => (
                   <div
                     key={x.name}
-                    className="flex flex-col font-bold text-3xl py-4"
+                    className="flex flex-col md:flex-row md:gap-2 font-bold text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
                   >
-                    <p>{x.name}: {scores[i]}%</p>
+                    <span className=" font-semibold whitespace-nowrap">
+                      {x.name}:
+                    </span>
+                    <span className=" font-bold">{scores[i]}%</span>
                   </div>
                 ))}
               </div>
@@ -116,7 +123,7 @@ export default function Cracked() {
         </div>
         <Button
           onClick={handleTwitterShare}
-          className="mt-6 flex items-center justify-center gap-4 w-full bg-white text-background"
+          className="mt-6 flex items-center justify-center gap-2 w-full bg-white text-background"
         >
           Share on
           <Image src="/X.svg" alt={"X logo"} width={24} height={24} />
