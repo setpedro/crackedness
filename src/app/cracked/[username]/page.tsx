@@ -75,7 +75,7 @@ export default function Cracked() {
     setTitle(titleSelector(overall));
   }, [overall]);
 
-  const handleTwitterShare = () => {
+  function handleTwitterShare() {
     const shareUrl = "https://crackedlyzer.vercel.app";
     const shareText = `bro I'm a ${title}\nCheck out your crackedness level at`;
 
@@ -84,7 +84,7 @@ export default function Cracked() {
     )}&url=${encodeURIComponent(shareUrl)}`;
 
     window.open(twitterUrl, "_blank");
-  };
+  }
 
   if (isLoading) {
     return <LoadingSplash />;
@@ -106,11 +106,11 @@ export default function Cracked() {
               <div className="flex flex-col gap-2">
                 {parameters.map((x, i) => (
                   <div
-                    key={x.name}
+                    key={x.title}
                     className="flex flex-col md:flex-row md:gap-2 font-bold text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
                   >
                     <span className=" font-semibold whitespace-nowrap">
-                      {x.name}:
+                      {x.title}:
                     </span>
                     <span className=" font-bold">{scores[i]}%</span>
                   </div>

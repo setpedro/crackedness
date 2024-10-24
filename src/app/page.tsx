@@ -13,12 +13,12 @@ export default function Home() {
   const [username, setUsername] = useState("");
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     startTransition(() => {
       router.push(`/cracked/${username}`);
     });
-  };
+  }
 
   if (isPending) {
     return <LoadingSplash />;

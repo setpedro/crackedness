@@ -40,6 +40,6 @@ export interface ApiResponse<T> {
 }
 
 export type Horseman = {
-  name: string;
+  title: string;
   description: string;
 };

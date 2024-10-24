@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Footer() {
   return (
     <div className="w-full text-center mt-auto py-2 mx-auto text-xs sm:text-sm">

@@ -1,4 +1,4 @@
-import { Horseman } from "./types";
+import { Horseman } from "../types";
 
 export const titles: Record<number, string[]> = {
   0: [
@@ -80,22 +80,21 @@ export const titles: Record<number, string[]> = {
   ],
 };
 
-// The 4 horsemen of TPOT
 export const parameters: Horseman[] = [
   {
-    name: "Tool Maximalism",
+    title: "Tool Maximalism",
     description: "Captures the Arch/Neovim/setup obsession",
   },
   {
-    name: "Brain Rot Level",
+    title: "Brain Rot Level",
     description: "Measures pure unhinged energy",
   },
   {
-    name: "Tech/Yap Balance",
+    title: "Tech/Yap Balance",
     description: "The Yacine Factor™",
   },
   {
-    name: "Language Opinions",
+    title: "Language Opinions",
     description: "The Rust-to-normie pipeline",
   },
 ];
