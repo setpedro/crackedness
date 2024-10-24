@@ -33,7 +33,7 @@ export default function Home() {
       <form onSubmit={handleSubmit} className="my-auto flex gap-4">
         <Input onChange={(e) => setUsername(e.target.value)} />
         <Button type="submit" disabled={username.length === 0}>
-          {"Analyze your crackedness"}
+          Analyze your crackedness
         </Button>
       </form>
       <Footer />

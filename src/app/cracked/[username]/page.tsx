@@ -76,7 +76,7 @@ export default function Cracked() {
   }, [overall]);
 
   const handleTwitterShare = () => {
-    const shareUrl = "https://your-app-url.com/cracked";
+    const shareUrl = "https://crackedlyzer.vercel.app";
     const shareText = `bro I'm a ${title}\nCheck out your crackedness level at`;
 
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
@@ -93,20 +93,19 @@ export default function Cracked() {
   return (
     <div className="h-screen border border-black flex flex-col items-center px-20">
       <Navbar />
-      <div className="mt-48 flex flex-col items-center">
+      <div className="mt-28 flex flex-col items-center">
         <h1 className="text-5xl font-extrabold">{title}</h1>
-        <div className="flex flex-col gap-4 mt-10 rounded-md border-2 px-8 py-4 w-[1024px] bg-foreground">
+        <div className="flex flex-col gap-4 mt-10 rounded-md border-2 p-8 w-[1024px] bg-foreground">
           <div className="text-5xl font-bold">Overall: {overall}%</div>
           <div className="flex gap-2">
             <div className="flex flex-col w-1/2">
-              <div className="flex-flex-col">
+              <div className="flex flex-col gap-2">
                 {parameters.map((x, i) => (
                   <div
                     key={x.name}
-                    className="flex flex-col font-bold text-3xl"
+                    className="flex flex-col font-bold text-3xl py-4"
                   >
-                    <p>{x.name}</p>
-                    <p>{scores[i]}%</p>
+                    <p>{x.name}: {scores[i]}%</p>
                   </div>
                 ))}
               </div>
