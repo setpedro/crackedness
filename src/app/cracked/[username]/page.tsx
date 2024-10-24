@@ -1,7 +1,7 @@
 "use client";
 
 import { User, Tweet, GptResponse } from "@/types";
-import { api, formatUserDetails } from "@/utils";
+import { api, cn, formatUserDetails } from "@/utils";
 import assert from "assert";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -11,12 +11,14 @@ import { parameters, titles } from "@/consts";
 import Button from "@/components/Button";
 import Image from "next/image";
 import LoadingSplash from "@/components/LoadingSplash";
+import { Modal } from "@/components/Modal";
 
 export default function Cracked() {
   const [isLoading, setIsLoading] = useState(false);
   const [conclusion, setConclusion] = useState("");
   const [scores, setScores] = useState<number[]>(Array(4).fill(0));
   const [title, setTitle] = useState("");
+  const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
 
   const overall = scores.reduce((a, b) => a + b, 0) / scores.length;
 
@@ -86,6 +88,16 @@ export default function Cracked() {
     window.open(twitterUrl, "_blank");
   }
 
+  function getDynamicGradient(score: number) {
+    if (score >= 80) {
+      return "high-score-gradient"; // Golden
+    } else if (score >= 50) {
+      return "mid-score-gradient"; // Green
+    } else {
+      return "low-score-gradient"; // Reddish
+    }
+  }
+
   if (isLoading) {
     return <LoadingSplash />;
   }
@@ -98,23 +110,63 @@ export default function Cracked() {
           {title}
         </h1>
         <div className="flex flex-col gap-4 mt-10 rounded-md border-2 p-4 sm:p-8 max-w-[1024px] bg-foreground">
-          <div className="text-2xl sm:text-4xl font-bold">
+          <div
+            className={cn(
+              "text-2xl sm:text-4xl font-bold",
+              getDynamicGradient(overall)
+            )}
+          >
             Overall: {overall}%
           </div>
           <div className="flex gap-2">
             <div className="flex flex-col w-1/2">
               <div className="flex flex-col gap-2">
-                {parameters.map((x, i) => (
-                  <div
-                    key={x.title}
-                    className="flex flex-col md:flex-row md:gap-2 font-bold text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
+                {parameters.map((x, i) => {
+                  const dynamicGradient = getDynamicGradient(scores[i]);
+                  return (
+                    <button
+                      key={x.title}
+                      onClick={() => setOpenModalIndex(i)}
+                      className="flex flex-col md:items-center md:flex-row md:gap-2 font-bold hover:opacity-70 text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
+                    >
+                      {/* <Image
+                        src="/Info.svg"
+                        alt="info"
+                        width={18}
+                        height={18}
+                        className="hidden md:block"
+                      /> */}
+                      <span
+                        className={cn(
+                          "font-semibold whitespace-nowrap",
+                          dynamicGradient,
+                          "animated-gradient"
+                        )}
+                      >
+                        {x.title}:
+                      </span>
+                      <span
+                        className={cn(
+                          "font-bold",
+                          dynamicGradient,
+                          "animated-gradient"
+                        )}
+                      >
+                        {scores[i]}%
+                      </span>
+                    </button>
+                  );
+                })}
+                {openModalIndex !== null && (
+                  <Modal
+                    onClose={() => setOpenModalIndex(null)}
+                    className="border"
                   >
-                    <span className=" font-semibold whitespace-nowrap">
-                      {x.title}:
-                    </span>
-                    <span className=" font-bold">{scores[i]}%</span>
-                  </div>
-                ))}
+                    <p className="py-2 px-4">
+                      {parameters[openModalIndex].description}
+                    </p>
+                  </Modal>
+                )}
               </div>
             </div>
             <span className="min-h-full border" />

@@ -6,3 +6,44 @@ body {
   background-color: #0A0A0E;
   color: #FFFFFF;
 }
+
+.high-score-gradient {
+  background: linear-gradient(90deg, #FFD700, #FFDD44, #FFC300, #FFB000, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200%; /* for movement */
+}
+
+.mid-score-gradient {
+  background: linear-gradient(90deg, #00FA9A, #20B2AA, #2E8B57, #3CB371);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200%; /* for movement */
+}
+
+.low-score-gradient {
+  background: linear-gradient(90deg, #FF4500, #FF6347, #FF7F50, #FA8072);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 200%; /* for movement */
+}
+
+/* fancy moving gradient */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient {
+  animation: gradientAnimation 3s ease-in-out infinite;
+}
