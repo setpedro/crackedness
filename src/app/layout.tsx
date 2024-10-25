@@ -10,12 +10,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CrackedLyzer",
     description: "Analyze your level of crackedness",
-    images: "crackedlyzer.vercel.app/meta.png",
+    images: [
+      {
+        url: "https://crackedlyzer.vercel.app/meta.png",
+      },
+    ],
   },
   twitter: {
     title: "CrackedLyzer",
     description: "Analyze your level of crackedness",
-    images: "crackedlyzer.vercel.app/meta.png",
+    card: "summary_large_image",
+    images: ["https://crackedlyzer.vercel.app/meta.png"],
   },
 };
 
