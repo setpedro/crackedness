@@ -19,11 +19,7 @@ export default function Home() {
       router.push(`/cracked/${username}`);
     });
   }
-
-  if (isPending) {
-    return <LoadingSplash />;
-  }
-
+  
   return (
     <div className="h-screen border border-black flex flex-col items-center">
       <Navbar />
