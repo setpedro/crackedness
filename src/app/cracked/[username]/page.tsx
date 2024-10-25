@@ -136,7 +136,7 @@ export default function Cracked() {
                           "animated-gradient"
                         )}
                       >
-                        <p>{x.title}</p>
+                        <p>{x.title}:</p>
                       </div>
                       <span
                         className={cn(

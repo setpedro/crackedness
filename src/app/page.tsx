@@ -3,15 +3,13 @@
 import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import Input from "@/components/Input";
-import LoadingSplash from "@/components/LoadingSplash";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { startTransition, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
   const [username, setUsername] = useState("");
-  const [isPending, startTransition] = useTransition();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,7 +17,7 @@ export default function Home() {
       router.push(`/cracked/${username}`);
     });
   }
-  
+
   return (
     <div className="h-screen border border-black flex flex-col items-center">
       <Navbar />
