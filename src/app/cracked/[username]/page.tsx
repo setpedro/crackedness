@@ -118,33 +118,26 @@ export default function Cracked() {
           >
             Overall: {overall}%
           </div>
-          <div className="flex gap-2">
-            <div className="flex flex-col w-1/2">
-              <div className="flex flex-col gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
+            <div className="w-full  sm:w-1/2">
+              <div className="grid grid-cols-2 sm:flex sm:flex-col gap-2">
                 {parameters.map((x, i) => {
                   const dynamicGradient = getDynamicGradient(scores[i]);
                   return (
                     <button
                       key={x.title}
                       onClick={() => setOpenModalIndex(i)}
-                      className="flex flex-col md:items-center md:flex-row md:gap-2 font-bold hover:opacity-70 text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
+                      className="flex flex-col items-center sm:items-start md:items-center md:flex-row md:gap-2 font-bold hover:opacity-70 text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
                     >
-                      {/* <Image
-                        src="/Info.svg"
-                        alt="info"
-                        width={18}
-                        height={18}
-                        className="hidden md:block"
-                      /> */}
-                      <span
+                      <div
                         className={cn(
-                          "font-semibold whitespace-nowrap",
+                          "flex items-center gap-2 font-semibold whitespace-nowrap",
                           dynamicGradient,
                           "animated-gradient"
                         )}
                       >
-                        {x.title}:
-                      </span>
+                        <p>{x.title}</p>
+                      </div>
                       <span
                         className={cn(
                           "font-bold",
@@ -169,8 +162,8 @@ export default function Cracked() {
                 )}
               </div>
             </div>
-            <span className="min-h-full border" />
-            <div className="w-1/2 font-bold">{conclusion}</div>
+            <span className="w-full h-0 sm:w-0 sm:min-h-full border" />
+            <div className="w-full sm:w-1/2 font-bold">{conclusion}</div>
           </div>
         </div>
         <Button
