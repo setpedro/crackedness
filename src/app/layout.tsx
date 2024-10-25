@@ -3,7 +3,6 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const SpaceGrotesk = JetBrains_Mono({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "CrackedLyzer",
   description: "Analyze your level of crackedness",
@@ -17,10 +16,19 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
+    card: "summary_large_image",
+    site: "@_setPedro",
+    creator: "@_setPedro",
     title: "CrackedLyzer",
     description: "Analyze your level of crackedness",
-    card: "summary_large_image",
-    images: ["https://crackedlyzer.vercel.app/meta.png"],
+    images: [
+      {
+        url: "https://crackedlyzer.vercel.app/meta.png",
+        alt: "CrackedLyzer - Analyze your level of crackedness",
+        width: 1200,
+        height: 628,
+      },
+    ],
   },
 };
 
