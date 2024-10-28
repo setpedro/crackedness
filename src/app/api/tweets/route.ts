@@ -10,8 +10,9 @@ export async function POST(req: Request) {
   let cursor = null;
 
   try {
+    // fetch 63 + 21 tweets
     while (tweets.length < 63) {
-      const response: any = await fetch(
+      const response: Response = await fetch(
         `${URL}${cursor ? `?cursor=${cursor}` : ""}`,
         { headers },
       );
