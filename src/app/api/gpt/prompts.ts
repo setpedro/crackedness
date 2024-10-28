@@ -126,6 +126,8 @@ my brother in Christ showing advanced symptoms of typescript brain rot with incr
 40
 95
 
+DO NOT ADD A LINE BETWEEN THE CONCLUSION AND THE SCORES. Just in the next line, like the examples provided. 
+
 ## TONE GUIDELINES:
 IMPORTANT: Keep it informal
 Use Gen Z tech twitter slang
