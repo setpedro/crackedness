@@ -1,6 +1,6 @@
 # CrackedLyzer 🚀
 
-[!WARNING]
+> [!WARNING]
 > Not for the easily offended.
 
 
