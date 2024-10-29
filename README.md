@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CrackedLyzer 🚀
 
-## Getting Started
+[!WARNING]
+> Not for the easily offended.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What is CrackedLyzer?
+CrackedLyzer is the only app you need to know if your tech brain is terminally cracked or if you’re just *another* VSCode normie in the timeline. Feed it your Twitter posts and bio, and it’ll hit you with a brutally honest crackedness rating that spans everything from your Tool Maximalism levels to your Language Opinions. Whether you’re an Arch Linux enjoyer with unhinged posting hours or a TypeScript defender with Rust urges, CrackedLyzer has your number.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scoring System: How Cracked Are You?
+CrackedLyzer doesn’t do boring. It scores you across four categories, each dripping with chaos energy. Every category goes from 0 to 100, maxing out where the crackedness is pure:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Tool Maximalism 🛠️**  
+  Think Arch users, mechanical keyboards, and dotfiles riced within an inch of their lives. Get those scores high if "I use Arch btw" sounds like a normal introduction.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Brain Rot Level 🧠**  
+  If you’re tweeting regex rants at 3am, using monads for everything, and casually rewriting frameworks “for fun,” this one’s all yours.
 
-## Learn More
+- **Tech/Yap Balance 🗣️**  
+  How much are you really *about* that tech life? High scores mean pure tech energy, low scores mean you’re spending way too much time in the replies.
 
-To learn more about Next.js, take a look at the following resources:
+- **Language Opinions 🚀**  
+  Are you a Rust evangelical or a JS/TS normie? Type system fan or a chaos coder? Time to own up.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How It Works
+Type in your Twitter username. That’s it.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**CrackedLyzer doesn’t hold back:**
+- Each analysis spits out one sentence calling out your peak cracked behavior
+- Followed immediately by four numbers. Those are your scores. Higher = more cracked, simple as that.
 
-## Deploy on Vercel
+### Example Analyses:
+Check it out:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```plaintext
+bro deadass trying to write a blockchain in rust at 3am while having an existential crisis about vim motions, proper terminal behavior fr fr  
+95  
+88  
+45  
+90  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+my brother in Christ really said 'let me rewrite my todo app in haskell' and proceeded to live-tweet their descent into type system madness 💀  
+75  
+92  
+60  
+85  
+
+caught this mf writing their own terminal emulator because 'alacritty wasn't minimalist enough' absolute peak tool maximalist behavior  
+100  
+85  
+40  
+70  
