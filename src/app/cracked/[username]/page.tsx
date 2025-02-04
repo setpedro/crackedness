@@ -8,10 +8,10 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { parameters, titles } from "@/consts";
-import Button from "@/components/Button";
+import Button from "@/components/UI/Button";
 import Image from "next/image";
-import LoadingSplash from "@/components/LoadingSplash";
-import { Modal } from "@/components/Modal";
+import LoadingSplash from "@/components/UI/LoadingSplash";
+import { Modal } from "@/components/UI/Modal";
 
 export default function Cracked() {
   const [isLoading, setIsLoading] = useState(false);

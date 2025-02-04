@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "@/components/Button";
+import Button from "@/components/UI/Button";
 import Footer from "@/components/Footer";
-import Input from "@/components/Input";
+import Input from "@/components/UI/Input";
 import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 import { startTransition, useState } from "react";
