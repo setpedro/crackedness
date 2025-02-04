@@ -1,8 +1,7 @@
 "use client";
 
 import { User, Tweet, GptResponse } from "@/types";
-import { api, cn, formatUserDetails } from "@/utils";
-import assert from "assert";
+import { api, cn, formatUserDetails, invariant } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -27,43 +26,49 @@ export default function Cracked() {
 
   useEffect(() => {
     async function analyzeUser(): Promise<void> {
-      setIsLoading(true);
+      try {
+        setIsLoading(true);
 
-      // fetch user
-      const userResponse = await api.fetch<User>("user", { username });
-      assert(
-        !userResponse.error,
-        userResponse.error || "Failed to fetch user data"
-      );
-      assert(userResponse.data, "No user data received");
+        const userResponse = await api.fetch<User>("user", { username });
+        invariant(
+          !userResponse.error,
+          userResponse.error || "Failed to fetch user data"
+        );
+        invariant(userResponse.data, "No user data received");
 
-      // fetch user's tweets
-      const tweetsResponse = await api.fetch<Tweet[]>("tweets", {
-        userId: userResponse.data.id_str,
-      });
-      assert(
-        !tweetsResponse.error,
-        tweetsResponse.error || "Failed to fetch tweets"
-      );
-      assert(tweetsResponse.data, "No tweet data received");
+        const tweetsResponse = await api.fetch<Tweet[]>("tweets", {
+          userId: userResponse.data.id_str,
+        });
+        invariant(
+          !tweetsResponse.error,
+          tweetsResponse.error || "Failed to fetch tweets"
+        );
+        invariant(tweetsResponse.data, "No tweet data received");
 
-      const userDetails = formatUserDetails(
-        userResponse.data,
-        tweetsResponse.data
-      );
-      // fetch completion
-      const gptResponse = await api.fetch<GptResponse>("gpt", { userDetails });
-      assert(!gptResponse.error, gptResponse.error || "Analysis failed");
+        const userDetails = formatUserDetails(
+          userResponse.data,
+          tweetsResponse.data
+        );
 
-      const [conclusionLine, ...scoreLines] = gptResponse.data.completion
-        .split("\n")
-        .map((line: string) => line.trim());
-      setConclusion(conclusionLine);
+        const gptResponse = await api.fetch<GptResponse>("gpt", {
+          userDetails,
+        });
+        invariant(!gptResponse.error, gptResponse.error || "Analysis failed");
 
-      const parsedScores = scoreLines.map((line: string) => parseInt(line, 10));
-      setScores(parsedScores);
+        const [conclusionLine, ...scoreLines] = gptResponse.data.completion
+          .split("\n")
+          .map((line: string) => line.trim());
+        setConclusion(conclusionLine);
 
-      setIsLoading(false);
+        const parsedScores = scoreLines.map((line: string) =>
+          parseInt(line, 10)
+        );
+        setScores(parsedScores);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     analyzeUser();

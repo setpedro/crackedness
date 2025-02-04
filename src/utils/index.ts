@@ -1,6 +1,6 @@
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { User, Tweet, ApiResponse } from "./types";
+import { User, Tweet, ApiResponse } from "../types";
 import assert from "assert";
 
 export function cn(...inputs: ClassValue[]) {
@@ -20,7 +20,7 @@ export const formatUserDetails = (user: User, tweets: Tweet[]): string => `
 ${formatUserInfo(user)}
 
 Recent Tweets
-${tweets.map(x => x.full_text).join("\n\n")}
+${tweets.map((x) => x.full_text).join("\n\n")}
 `;
 
 export const api = {
@@ -45,3 +45,12 @@ export const api = {
     }
   },
 };
+
+export function invariant(
+  condition: unknown,
+  message: string
+): asserts condition {
+  if (!condition) {
+    throw new Error(`Invariant failed: ${message}`);
+  }
+}
