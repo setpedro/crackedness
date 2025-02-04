@@ -7,10 +7,10 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { parameters, titles } from "@/consts";
-import Button from "@/components/UI/Button";
-import Image from "next/image";
 import LoadingSplash from "@/components/UI/LoadingSplash";
 import { Modal } from "@/components/UI/Modal";
+import ShareButton from "./components/ShareButton";
+import Horseman from "./components/Horseman";
 
 export default function Cracked() {
   const [isLoading, setIsLoading] = useState(false);
@@ -82,17 +82,6 @@ export default function Cracked() {
     setTitle(titleSelector(overall));
   }, [overall]);
 
-  function handleTwitterShare() {
-    const shareUrl = "https://crackedlyzer.vercel.app";
-    const shareText = `bro I'm a ${title}\nCheck out your crackedness level at`;
-
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      shareText
-    )}&url=${encodeURIComponent(shareUrl)}`;
-
-    window.open(twitterUrl, "_blank");
-  }
-
   function getDynamicGradient(score: number) {
     if (score >= 80) {
       return "high-score-gradient"; // Golden
@@ -129,30 +118,14 @@ export default function Cracked() {
                 {parameters.map((x, i) => {
                   const dynamicGradient = getDynamicGradient(scores[i]);
                   return (
-                    <button
-                      key={x.title}
+                    <Horseman
+                      key={i}
+                      x={x}
+                      i={i}
                       onClick={() => setOpenModalIndex(i)}
-                      className="flex flex-col items-center sm:items-start md:items-center md:flex-row md:gap-2 font-bold hover:opacity-70 text-sm sm:text-lg md:text-xl lg:text-3xl py-4"
-                    >
-                      <div
-                        className={cn(
-                          "flex items-center gap-2 font-semibold whitespace-nowrap",
-                          dynamicGradient,
-                          "animated-gradient"
-                        )}
-                      >
-                        <p>{x.title}:</p>
-                      </div>
-                      <span
-                        className={cn(
-                          "font-bold",
-                          dynamicGradient,
-                          "animated-gradient"
-                        )}
-                      >
-                        {scores[i]}%
-                      </span>
-                    </button>
+                      dynamicGradient={dynamicGradient}
+                      scores={scores}
+                    />
                   );
                 })}
                 {openModalIndex !== null && (
@@ -171,13 +144,7 @@ export default function Cracked() {
             <div className="w-full sm:w-1/2 font-bold">{conclusion}</div>
           </div>
         </div>
-        <Button
-          onClick={handleTwitterShare}
-          className="mt-6 flex items-center justify-center gap-2 w-full bg-white text-background"
-        >
-          Share on
-          <Image src="/X.svg" alt={"X logo"} width={24} height={24} />
-        </Button>
+        <ShareButton title={title} />
       </div>
 
       <Footer />
