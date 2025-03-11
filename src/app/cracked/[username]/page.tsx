@@ -77,7 +77,7 @@ export default function Cracked() {
   useEffect(() => {
     function titleSelector(score: number): string {
       const bracket = Math.floor(score / 10) * 10;
-      return titles[bracket][Math.floor(Math.random() * 5)];
+      return titles[bracket][Math.floor(Math.random() * 10)];
     }
     setTitle(titleSelector(overall));
   }, [overall]);

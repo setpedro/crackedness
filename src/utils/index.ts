@@ -1,7 +1,6 @@
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { User, Tweet, ApiResponse } from "../types";
-import assert from "assert";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -33,7 +32,7 @@ export const api = {
         },
         body: JSON.stringify(data),
       });
-      assert(response.ok, `API error: ${response.statusText}`);
+      invariant(response.ok, `API error: ${response.statusText}`);
 
       const responseData = await response.json();
       return { data: responseData };
