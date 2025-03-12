@@ -1,7 +1,6 @@
 "use client";
 
-import { User, Tweet, GptResponse } from "@/types";
-import { api, cn, formatUserDetails, invariant } from "@/utils";
+import { cn } from "@/utils";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -11,6 +10,7 @@ import LoadingSplash from "@/components/UI/LoadingSplash";
 import { Modal } from "@/components/UI/Modal";
 import ShareButton from "./components/ShareButton";
 import Horseman from "./components/Horseman";
+import { analyzeUser } from "@/services/user";
 
 export default function Cracked() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,60 +19,26 @@ export default function Cracked() {
   const [title, setTitle] = useState("");
   const [openModalIndex, setOpenModalIndex] = useState<number | null>(null);
 
-  const overall = scores.reduce((a, b) => a + b, 0) / scores.length;
-
   const pathname = usePathname();
   const username = pathname.replace("/cracked/", "");
+  const overall = scores.reduce((a, b) => a + b, 0) / scores.length;
 
   useEffect(() => {
-    async function analyzeUser(): Promise<void> {
+    const fetchAnalysis = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
-
-        const userResponse = await api.fetch<User>("user", { username });
-        invariant(
-          !userResponse.error,
-          userResponse.error || "Failed to fetch user data"
-        );
-        invariant(userResponse.data, "No user data received");
-
-        const tweetsResponse = await api.fetch<Tweet[]>("tweets", {
-          userId: userResponse.data.id_str,
-        });
-        invariant(
-          !tweetsResponse.error,
-          tweetsResponse.error || "Failed to fetch tweets"
-        );
-        invariant(tweetsResponse.data, "No tweet data received");
-
-        const userDetails = formatUserDetails(
-          userResponse.data,
-          tweetsResponse.data
-        );
-
-        const gptResponse = await api.fetch<GptResponse>("gpt", {
-          userDetails,
-        });
-        invariant(!gptResponse.error, gptResponse.error || "Analysis failed");
-
-        const [conclusionLine, ...scoreLines] = gptResponse.data.completion
-          .split("\n")
-          .map((line: string) => line.trim());
-        setConclusion(conclusionLine);
-
-        const parsedScores = scoreLines.map((line: string) =>
-          parseInt(line, 10)
-        );
-        setScores(parsedScores);
+        const { conclusion, scores } = await analyzeUser(username);
+        setConclusion(conclusion);
+        setScores(scores);
       } catch (error) {
-        console.error(error);
+        // Error already logged in service
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
-    analyzeUser();
-  }, [pathname, username]);
+    fetchAnalysis();
+  }, [username]);
 
   useEffect(() => {
     function titleSelector(score: number): string {
