@@ -31,7 +31,10 @@ export default function Cracked() {
         setConclusion(conclusion);
         setScores(scores);
       } catch (error) {
-        // Error already logged in service
+        console.error(error);
+
+        setConclusion("Analysis failed. Please try again later.");
+        setScores([0, 0, 0, 0]);
       } finally {
         setIsLoading(false);
       }
