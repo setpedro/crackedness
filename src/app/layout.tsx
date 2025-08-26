@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@_setPedro",
-    creator: "@_setPedro",
+    site: "@_setpedro",
+    creator: "@_setpedro",
     title: "CrackedLyzer",
     description: "Analyze your level of crackedness",
     images: [

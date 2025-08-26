@@ -4,8 +4,8 @@ export default function Footer() {
       <div className="flex gap-2 items-center justify-center">
         <div className="flex">
           Made by
-          <a href="https://x.com/_setPedro" className="ml-1.5 hover:opacity-70">
-            @_setPedro
+          <a href="https://x.com/_setpedro" className="ml-1.5 hover:opacity-70">
+            @_setpedro
           </a>
           .
         </div>
